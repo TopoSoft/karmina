@@ -21,10 +21,11 @@ def main():
                 errors = []
                 page.on('pageerror', lambda error: errors.append(str(error)))
                 page.goto(f'http://127.0.0.1:{server.server_port}')
-                expect(page.locator('h1').first).to_contain_text('автор')
-                for language, heading in [('en', 'Every story'), ('lv', 'Katram stāstam'), ('ru', 'У каждой истории')]:
+                expect(page.locator('#hero-title')).to_contain_text('Твоя история')
+                for language, heading in [('en', 'Your story'), ('lv', 'Tavs stāsts'), ('ru', 'Твоя история')]:
                     page.locator('#language').select_option(language)
-                    expect(page.locator('h1').first).to_contain_text(heading)
+                    expect(page.locator('#hero-title')).to_contain_text(heading)
+                page.locator('[data-enter-studio]').first.click()
                 for mode in ['animation', 'photorealistic']:
                     page.locator('[name=title]').fill(f'Acceptance {mode}')
                     page.locator('[name=mode]').select_option(mode)

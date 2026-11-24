@@ -10,6 +10,20 @@ from .studio import AGENTS, Studio, StudioError
 
 WEB = Path(__file__).parent / 'web'
 LOCAL_TENANT = 'local-director'
+STATIC_FILES = {
+    '/': ('index.html', 'text/html; charset=utf-8'),
+    '/studio': ('index.html', 'text/html; charset=utf-8'),
+    '/app.js': ('app.js', 'text/javascript; charset=utf-8'),
+    '/i18n.js': ('i18n.js', 'text/javascript; charset=utf-8'),
+    '/experience-i18n.js': ('experience-i18n.js', 'text/javascript; charset=utf-8'),
+    '/style.css': ('style.css', 'text/css; charset=utf-8'),
+    '/assets/crew.png': ('assets/crew.png', 'image/png'),
+    '/assets/cinema.png': ('assets/cinema.png', 'image/png'),
+    '/assets/manrope.ttf': ('assets/manrope.ttf', 'font/ttf'),
+    '/assets/unbounded.ttf': ('assets/unbounded.ttf', 'font/ttf'),
+    '/assets/manrope-OFL.txt': ('assets/manrope-OFL.txt', 'text/plain; charset=utf-8'),
+    '/assets/unbounded-OFL.txt': ('assets/unbounded-OFL.txt', 'text/plain; charset=utf-8'),
+}
 
 
 def make_server(path, port=8787):
@@ -59,10 +73,9 @@ def make_server(path, port=8787):
             try:
                 self.guard()
                 path = urlsplit(self.path).path
-                if self.command == 'GET' and path in ('/', '/app.js', '/style.css', '/i18n.js'):
-                    name = 'index.html' if path == '/' else path[1:]
-                    kind = {'html': 'text/html', 'js': 'text/javascript', 'css': 'text/css'}[name.rsplit('.', 1)[1]]
-                    return self.send(200, (WEB / name).read_bytes(), kind + '; charset=utf-8')
+                if self.command == 'GET' and path in STATIC_FILES:
+                    name, kind = STATIC_FILES[path]
+                    return self.send(200, (WEB / name).read_bytes(), kind)
                 if self.command == 'GET' and path == '/api/config':
                     return self.send(200, {'agents': AGENTS, 'runtime': 'local_template', 'ohagent_available': False, 'authentication': 'loopback_single_user', 'media_generation': False})
                 if path == '/api/projects':

@@ -39,10 +39,12 @@ node --check karmina/web/i18n.js
 node --test tests/i18n.test.mjs
 # Optional: requires Playwright Python package and Chromium installed separately
 PYTHONPATH=. python3 tests/browser_acceptance.py
+PYTHONPATH=. python3 tests/cinematic_acceptance.py
 ```
 
 See [agent runtime boundary](docs/agents.md) and
-[validation evidence](docs/testing/agent-studio.md).
+[validation evidence](docs/testing/agent-studio.md), and
+[cinematic redesign acceptance](docs/testing/cinematic-studio.md).
 
 ## Production modes
 
