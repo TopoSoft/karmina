@@ -6,8 +6,43 @@ assisting production rather than replacing creative control.
 
 ## Status
 
-Foundation specification only. There is no running application, connected model
-provider, deployed service, or working video generation yet.
+A working local preproduction application is available: persistent projects,
+six specialized role definitions, editable versioned artifacts, director approval
+gates, and production-pack export. The execution mode is explicitly **local
+worksheets**, not autonomous AI. ohAgent is not connected and no media is generated.
+
+## Run locally
+
+Requires Python 3.12 or later. No runtime packages or credentials are needed.
+
+```sh
+python3 -m karmina.server
+```
+
+Open `http://127.0.0.1:8787`. Project data is stored in ignored
+`data/studio.sqlite3`. Override with `--database PATH` and `--port PORT`.
+The server binds to loopback only and serves a single local director workspace.
+It is not a production server or a multi-user authentication system. Do not expose
+it through a reverse proxy or upload sensitive client materials yet.
+
+Create a project, open each role's worksheet, write or edit its content, save a
+revision, and approve it to unlock the next role. All six approvals unlock a JSON
+production pack, not a video export. Approved artifacts are immutable in this
+iteration. New projects are required for changes to already approved stages.
+
+## Validate
+
+```sh
+python3 -m unittest discover -s tests -v
+node --check karmina/web/app.js
+node --check karmina/web/i18n.js
+node --test tests/i18n.test.mjs
+# Optional: requires Playwright Python package and Chromium installed separately
+PYTHONPATH=. python3 tests/browser_acceptance.py
+```
+
+See [agent runtime boundary](docs/agents.md) and
+[validation evidence](docs/testing/agent-studio.md).
 
 ## Production modes
 

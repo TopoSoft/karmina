@@ -1,8 +1,13 @@
 # Proposed architecture
 
-This is a design baseline, not an implemented or deployed system. Technology and
-model providers have not been selected. Evaluate current APIs, commercial rights,
-data retention, regional availability, and pricing before selection.
+The long-term design below is not a deployed system. The current local slice uses
+Python's standard-library HTTP server, SQLite snapshots, and browser JavaScript.
+It implements project/artifact/approval boundaries, not media production or SaaS
+authentication. See agents.md for its relationship to ohAgent.
+
+Production technology and model providers have not been selected. Evaluate current
+APIs, commercial rights, data retention, regional availability, and pricing before
+selection.
 
 ## Components
 

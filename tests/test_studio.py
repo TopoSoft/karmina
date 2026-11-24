@@ -74,6 +74,37 @@ class StudioTests(unittest.TestCase):
         with self.assertRaises(StudioError):
             self.studio.draft('alpha', p['id'], 'producer', p['version'])
 
+    def test_concurrent_updates_have_one_winner(self):
+        from concurrent.futures import ThreadPoolExecutor
+        p = self.project()
+
+        def update(_):
+            try:
+                self.studio.draft('alpha', p['id'], 'producer', 0)
+                return 'saved'
+            except StudioError as error:
+                return error.code
+
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            outcomes = list(pool.map(update, range(2)))
+        self.assertCountEqual(outcomes, ['saved', 'version_conflict'])
+        self.assertEqual(len(self.studio.get('alpha', p['id'])['steps'][0]['history']), 1)
+
+    def test_artifact_limits_lineage_and_localized_worksheets(self):
+        for language in ['en', 'lv', 'ru']:
+            p = self.studio.create('alpha', {'title': 'Film', 'brief': 'A story', 'mode': 'animation', 'language': language})
+            for value in ['', 'x' * 24001, 42]:
+                with self.assertRaises(StudioError):
+                    self.studio.draft('alpha', p['id'], 'producer', 0, value)
+            with self.assertRaises(StudioError):
+                self.studio.draft('alpha', p['id'], 'producer', True)
+            p = self.studio.draft('alpha', p['id'], 'producer', 0)
+            first = p['steps'][0]['artifact']['id']
+            p = self.studio.approve('alpha', p['id'], 'producer', p['version'])
+            p = self.studio.draft('alpha', p['id'], 'writer', p['version'])
+            self.assertEqual(p['steps'][1]['artifact']['input_artifact_ids'], [first])
+            self.assertEqual(len(p['events']), p['version'])
+
     def test_unknown_agent_and_cross_tenant_writes_fail(self):
         p = self.project()
         for tenant, role in [('beta', 'producer'), ('alpha', 'unknown')]:

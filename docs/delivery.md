@@ -1,7 +1,10 @@
 # Delivery and acceptance
 
-Only the foundation documents exist today. The milestones below describe future
-implementation and must not be reported as completed functionality.
+A local preproduction vertical slice is implemented: persistent projects, six
+specialist role worksheets, revision history, approval gates, and JSON production
+packs. See README.md and agents.md for executable scope and runtime limitations.
+The milestones below remain the broader film-production roadmap. Asset upload,
+live agents, rendering, and SaaS readiness are not complete.
 
 ## 1. Local studio skeleton
 
