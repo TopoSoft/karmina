@@ -67,10 +67,11 @@ h3 { line-height: 1.45; }
 .hero-media { position: relative; height: clamp(430px, 44.7vw, 670px); max-width: 1800px; margin: auto; }
 .hero-media > img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
 .hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, #08080d12 0%, transparent 42%, #08080d4d 65%, var(--background) 100%); pointer-events: none; }
-.hero-topline { position: absolute; top: 27px; left: max(36px, calc((100vw - 1208px)/2)); z-index: 1; display: flex; align-items: center; gap: 10px; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .16em; text-shadow: 0 1px 10px #000; }
+.hero-toolbar { position: absolute; inset: 19px max(36px, calc((100vw - 1208px)/2)) auto; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; }
+.hero-topline { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .16em; text-shadow: 0 1px 10px #000; }
 .live-dot, .status-dot { display: inline-block; width: 5px; height: 5px; background: var(--mint); border-radius: 50%; flex-shrink: 0; }
 .live-dot { box-shadow: 0 0 12px #8bcbbc; }
-.hero-switch { position: absolute; top: 19px; right: max(36px, calc((100vw - 1208px)/2)); z-index: 2; display: flex; gap: 4px; padding: 4px; border: 1px solid #ffffff27; background: #08080d88; border-radius: 30px; backdrop-filter: blur(16px); }
+.hero-switch { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border: 1px solid #ffffff27; background: #08080d88; border-radius: 30px; backdrop-filter: blur(16px); }
 .hero-switch button { border: 0; background: transparent; padding: 7px 16px; color: #c7c1cd; font-size: 11px; border-radius: 24px; }
 .hero-switch button.selected { background: #f7eef9; color: #1b1420; font-weight: 700; }
 .hero-credit { position: absolute; right: 36px; bottom: 132px; z-index: 1; color: #ffffff9c; font-size: 8px; letter-spacing: .12em; }
@@ -256,8 +257,7 @@ dialog .button { width: 100%; margin-top: 23px; }
 }
 @media (max-width: 850px) {
   .header-nav { display: none; }
-  .hero-topline { left: 25px; }
-  .hero-switch { right: 25px; }
+  .hero-toolbar { left: 25px; right: 25px; }
   .hero-media { height: 490px; }
   .hero-copy { margin-top: -75px; }
   #hero-title { font-size: clamp(31px, 5vw, 44px); }
@@ -290,8 +290,8 @@ dialog .button { width: 100%; margin-top: 23px; }
   .header-studio { font-size: 10px; gap: 11px; padding: 8px 10px; }
   .hero-media { height: 400px; }
   .hero-media > img { object-position: 44% center; }
-  .hero-topline { left: 19px; top: 19px; font-size: 7px; max-width: 180px; letter-spacing: .1em; }
-  .hero-switch { top: 52px; right: 16px; }
+  .hero-toolbar { top: 19px; left: 19px; right: 19px; }
+  .hero-topline { font-size: 7px; letter-spacing: .1em; }
   .hero-switch button { font-size: 9px; padding: 6px 12px; }
   .hero-credit { right: 20px; bottom: 93px; font-size: 6px; }
   .hero-copy { margin-top: -74px; padding: 0 18px; }

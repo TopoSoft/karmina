@@ -22,6 +22,14 @@ Validated locally on November 24, 2026.
   approval gates, revision persistence, JSON downloads, immutable approvals,
   three interface languages and mobile layout without page errors.
 
+## Hero toolbar regression
+
+The hero label and mode switch share a wrapping flex toolbar instead of independent
+absolute positions. Bounding-box assertions verify that they do not overlap in
+English, Latvian or Russian at 320, 390, 600, 768, 850, 1024 and 1440 px. The
+cinematic and existing workflow browser checks, 10 Python tests and 2 localization
+tests passed after this correction.
+
 ## Runtime boundary
 
 This remains a local preproduction application. Crew roles provide editable

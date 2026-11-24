@@ -26,6 +26,19 @@ def main():
                 expect(page.locator('#hero-art')).to_be_visible()
                 expect(page.locator('#hero-title')).to_contain_text('Твоя история')
                 assert page.locator('#hero-art').evaluate('(img) => img.complete && img.naturalWidth > 1000')
+                page.evaluate('document.fonts.ready')
+                for language in ['en', 'lv', 'ru']:
+                    page.locator('#language').select_option(language)
+                    for width in [320, 390, 600, 768, 850, 1024, 1440]:
+                        page.set_viewport_size({'width': width, 'height': 1100})
+                        label = page.locator('.hero-topline').bounding_box()
+                        switch = page.locator('.hero-switch').bounding_box()
+                        assert (label['x'] + label['width'] <= switch['x']
+                                or switch['x'] + switch['width'] <= label['x']
+                                or label['y'] + label['height'] <= switch['y']
+                                or switch['y'] + switch['height'] <= label['y']), f'hero overlap: {language} {width}'
+                        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), f'overflow: {language} {width}'
+                page.set_viewport_size({'width': 1440, 'height': 1100})
                 page.locator('[data-hero-mode=photorealistic]').click()
                 expect(page.locator('#hero-art')).to_have_attribute('src', '/assets/cinema.png')
                 page.locator('[data-hero-mode=animation]').click()
