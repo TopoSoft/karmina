@@ -1,9 +1,109 @@
 <!doctype html>
 <html lang="ru">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Karmina Studio</title><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08080d">
+  <meta name="description" content="Karmina: an author-led studio for animation and cinematic stories.">
+  <title>Karmina / Film studio</title>
+  <link rel="preload" href="/assets/unbounded.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/manrope.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
 <body>
-<header><a href="/" class="brand">karmina<span> / STUDIO</span></a><label class="language"><span data-t="language">Язык</span><select id="language"><option value="ru">Русский</option><option value="en">English</option><option value="lv">Latviešu</option></select></label></header>
-<div class="shell"><aside><p class="eyebrow" data-t="workspace"></p><h2 data-t="projects"></h2><nav id="projects"></nav><button id="new" class="secondary" data-t="new"></button><div class="runtime"><span class="dot"></span><strong data-t="local"></strong><p data-t="notice"></p></div></aside>
-<main><div id="error" role="alert" hidden></div><section id="create"><p class="eyebrow" data-t="eyebrow"></p><h1 data-t="headline"></h1><p class="intro" data-t="intro"></p><div class="filmstrip" aria-hidden="true"><span>01 / IDEA</span><span>02 / WORLD</span><span>03 / FRAME</span></div><form id="project-form"><label><span data-t="title"></span><input name="title" required maxlength="120" autocomplete="off"></label><label><span data-t="mode"></span><select name="mode"><option value="animation" data-t="animation"></option><option value="photorealistic" data-t="photorealistic"></option></select></label><label class="wide"><span data-t="brief"></span><textarea name="brief" required maxlength="12000" rows="4"></textarea></label><button type="submit" data-t="create"></button></form></section>
-<section id="studio" hidden><p class="eyebrow" id="project-mode"></p><h1 id="project-title"></h1><p id="project-brief" class="intro"></p><div class="toolbar"><span id="progress"></span><button id="export" class="secondary" data-t="export" disabled></button></div><div id="pipeline" class="pipeline"></div><article class="artifact"><div class="artifact-heading"><div><p class="eyebrow" data-t="artifact"></p><h2 id="role-title"></h2></div><span id="revision"></span></div><p id="stage-hint"></p><label for="content" data-t="content"></label><textarea id="content" rows="15" maxlength="24000"></textarea><div class="actions"><button id="draft" class="secondary" data-t="draft"></button><button id="save" class="secondary" data-t="save"></button><button id="approve" data-t="approve"></button></div><details><summary data-t="history"></summary><div id="history"></div></details></article></section>
-<footer data-t="footer"></footer></main></div></body></html>
+  <a class="skip-link" href="#main-content" data-t="skip_content"></a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="brand" data-home aria-label="Karmina"><span class="brand-symbol" aria-hidden="true">✳</span>karmina<span class="brand-period">.</span></a>
+      <nav class="header-nav" data-t-aria="navigation_label">
+        <a href="/#possibilities" data-section="possibilities" data-t="nav_possibilities"></a>
+        <a href="/#crew" data-section="crew" data-t="nav_crew"></a>
+        <a href="/#process" data-section="process" data-t="nav_process"></a>
+      </nav>
+      <div class="header-actions">
+        <label class="language"><span class="sr-only" data-t="language"></span><select id="language"><option value="ru">RU</option><option value="en">EN</option><option value="lv">LV</option></select></label>
+        <a href="/studio" class="header-studio" data-enter-studio><span data-t="open_studio"></span><span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </header>
+  <div id="error" role="alert" hidden></div>
+  <main id="main-content">
+    <div id="landing">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media">
+          <img id="hero-art" src="/assets/crew.png" alt="" width="1672" height="941" fetchpriority="high">
+          <div class="hero-topline"><span class="live-dot" aria-hidden="true"></span><span data-t="hero_eyebrow"></span></div>
+          <div class="hero-switch" data-t-aria="mode_label">
+            <button data-hero-mode="animation" class="selected" aria-pressed="true" data-t="short_animation"></button>
+            <button data-hero-mode="photorealistic" aria-pressed="false" data-t="short_cinema"></button>
+          </div>
+          <span class="hero-credit" data-t="concept_art"></span>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow hero-label" data-t="hero_label"></p>
+          <h1 id="hero-title"><span data-t="hero_line_one"></span><br><span class="spectrum" data-t="hero_line_two"></span></h1>
+          <p class="hero-description" data-t="hero_description"></p>
+          <div class="hero-actions"><a href="/studio" class="button primary" data-enter-studio><span data-t="hero_cta"></span><span aria-hidden="true">↗</span></a><a href="#crew" class="button quiet"><span class="play-icon" aria-hidden="true">▷</span><span data-t="meet_crew"></span></a></div>
+          <p class="honest-note"><span class="status-dot" aria-hidden="true"></span><span data-t="prototype_note"></span></p>
+        </div>
+        <div class="story-path" aria-hidden="true"><span data-t="path_idea"></span><b>→</b><span data-t="path_world"></span><b>→</b><span data-t="path_frames"></span><b>→</b><span data-t="path_story"></span></div>
+      </section>
+      <section id="possibilities" class="section possibilities">
+        <div class="section-heading"><div><p class="eyebrow" data-t="possibilities_eyebrow"></p><h2 data-t="possibilities_title"></h2></div><p data-t="possibilities_description"></p></div>
+        <div class="mode-grid">
+          <a href="/studio" class="mode-card animation-card" data-enter-studio data-mode="animation"><img src="/assets/crew.png" alt="" width="1672" height="941" loading="lazy"><div class="mode-copy"><span class="tag" data-t="mode_animation_tag"></span><h3 data-t="animation"></h3><p data-t="animation_description"></p><span class="mode-link"><span data-t="create_animation"></span><b aria-hidden="true">↗</b></span></div></a>
+          <a href="/studio" class="mode-card cinema-card" data-enter-studio data-mode="photorealistic"><img src="/assets/cinema.png" alt="" width="1672" height="941" loading="lazy"><div class="mode-copy"><span class="tag" data-t="mode_cinema_tag"></span><h3 data-t="photorealistic"></h3><p data-t="cinema_description"></p><span class="mode-link"><span data-t="create_cinema"></span><b aria-hidden="true">↗</b></span></div></a>
+        </div>
+        <p class="section-note" data-t="concept_note"></p>
+      </section>
+      <section id="crew" class="section crew-section">
+        <div class="section-heading"><div><p class="eyebrow" data-t="crew_eyebrow"></p><h2 data-t="crew_title"></h2></div><p data-t="crew_description"></p></div>
+        <div id="crew-grid" class="crew-grid"></div>
+        <div class="director-note"><span class="note-icon" aria-hidden="true">✳</span><div><strong data-t="director_note_title"></strong><p data-t="director_note"></p></div><a href="/studio" data-enter-studio class="text-link"><span data-t="take_chair"></span><span aria-hidden="true">↗</span></a></div>
+      </section>
+      <section id="process" class="section process-section">
+        <div class="section-heading"><div><p class="eyebrow" data-t="process_eyebrow"></p><h2 data-t="process_title"></h2></div><p data-t="process_description"></p></div>
+        <div class="process-grid">
+          <article><span class="process-number">01<span aria-hidden="true"> /</span></span><h3 data-t="process_one_title"></h3><p data-t="process_one_body"></p><span class="small-status" data-t="available_now"></span></article>
+          <article><span class="process-number">02<span aria-hidden="true"> /</span></span><h3 data-t="process_two_title"></h3><p data-t="process_two_body"></p><span class="small-status" data-t="available_now"></span></article>
+          <article><span class="process-number">03<span aria-hidden="true"> /</span></span><h3 data-t="process_three_title"></h3><p data-t="process_three_body"></p><span class="small-status planned" data-t="planned_production"></span></article>
+        </div>
+      </section>
+      <section class="final-cta section"><span class="brand-symbol" aria-hidden="true">✳</span><p class="eyebrow" data-t="final_eyebrow"></p><h2 data-t="final_title"></h2><a href="/studio" class="button primary" data-enter-studio><span data-t="hero_cta"></span><span aria-hidden="true">↗</span></a><p class="honest-note" data-t="prototype_note"></p></section>
+    </div>
+    <div id="workspace" class="workspace" hidden>
+      <aside class="workspace-sidebar">
+        <p class="eyebrow" data-t="workspace"></p><h2 data-t="projects"></h2>
+        <button id="new" class="button secondary" data-t="new"></button>
+        <nav id="projects" data-t-aria="projects_label"></nav>
+        <div class="runtime"><span class="status-dot" aria-hidden="true"></span><strong data-t="local"></strong><p data-t="notice"></p></div>
+      </aside>
+      <div class="workspace-main">
+        <section id="create">
+          <div class="workspace-topline"><span class="eyebrow" data-t="new_project_eyebrow"></span><span class="local-badge" data-t="local_badge"></span></div>
+          <div class="create-layout">
+            <div class="create-copy"><h1 data-t="create_headline"></h1><p class="intro" data-t="create_intro"></p>
+              <form id="project-form">
+                <label><span data-t="title"></span><input name="title" required maxlength="120" autocomplete="off"></label>
+                <label><span data-t="mode"></span><select name="mode"><option value="animation" data-t="animation"></option><option value="photorealistic" data-t="photorealistic"></option></select></label>
+                <label class="wide"><span data-t="brief"></span><textarea name="brief" required maxlength="12000" rows="5"></textarea></label>
+                <button type="submit" class="button primary"><span data-t="create"></span><span aria-hidden="true">↗</span></button>
+              </form>
+            </div>
+            <figure class="create-poster"><img id="create-art" src="/assets/crew.png" alt="" width="1672" height="941"><figcaption><span class="tag" data-t="concept_art"></span><strong data-t="poster_caption"></strong><p data-t="poster_description"></p></figcaption></figure>
+          </div>
+        </section>
+        <section id="studio" hidden>
+          <div class="project-heading"><div><p class="eyebrow" id="project-mode"></p><h1 id="project-title"></h1><p id="project-brief" class="intro"></p></div><span class="local-badge" data-t="local_badge"></span></div>
+          <div class="toolbar"><div class="progress-display"><span class="progress-light" aria-hidden="true"></span><span id="progress"></span></div><button id="export" class="button secondary" data-t="export" disabled></button></div>
+          <div id="pipeline" class="pipeline"></div>
+          <div class="workbench"><article class="artifact"><div class="artifact-heading"><div><p class="eyebrow" data-t="artifact"></p><h2 id="role-title"></h2></div><span id="revision"></span></div><p id="stage-hint"></p><label for="content" class="sr-only" data-t="content"></label><textarea id="content" rows="17" maxlength="24000"></textarea><div class="actions"><button id="draft" class="button secondary" data-t="draft"></button><button id="save" class="button secondary" data-t="save"></button><button id="approve" class="button primary" data-t="approve"></button></div><details><summary data-t="history"></summary><div id="history"></div></details></article><aside class="director-panel"><div id="role-portrait" class="portrait producer" aria-hidden="true"></div><span class="eyebrow" data-t="your_specialist"></span><h3 id="role-panel-name"></h3><p id="role-panel-description"></p><div class="panel-divider"></div><span class="small-status planned" data-t="manual_mode"></span><p class="panel-note" data-t="notice"></p></aside></div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><a href="/" class="brand" data-home>karmina<span class="brand-period">.</span></a><p data-t="footer"></p><span class="footer-meta">© 2026 KARMINA</span></footer>
+  <dialog id="agent-dialog" aria-labelledby="agent-name"><div class="dialog-topline"><span class="eyebrow" data-t="crew_eyebrow"></span><button id="close-agent" class="icon-button" data-t-aria="close_dialog">×</button></div><div id="agent-portrait" class="portrait" aria-hidden="true"></div><h2 id="agent-name"></h2><p id="agent-description"></p><div class="agent-deliverable"><span class="eyebrow" data-t="agent_deliverable"></span><strong id="agent-output"></strong></div><p class="section-note" data-t="agent_runtime_note"></p><a href="/studio" class="button primary" data-enter-studio data-t="take_chair"></a></dialog>
+</body>
+</html>
