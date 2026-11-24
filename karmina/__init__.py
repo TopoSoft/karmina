@@ -1,0 +1,1 @@
+"""Karmina application package."""
